@@ -4,7 +4,6 @@ import ProductAttribute from "../../components/ProductAttribute/ProductAttribute
 
 
 const ProductPage = (props) => {
-    console.log(props.product)
     const [selectedImage, setSelectedImage] = useState(0)
     const [currentCurrency, setCurrenctCurrency] = useState(localStorage.getItem('current-currency').split(' ')[1])
     const selectImage = (event) => {
@@ -46,12 +45,22 @@ const ProductPage = (props) => {
 
     const addProductToCart = () => {
         let cart = JSON.parse(localStorage.getItem('cart'))
+        let currentProduct = JSON.parse(localStorage.getItem('current-product'))
+        let productIsDublicator = false
         if(cart === null){
-            localStorage.setItem('cart', JSON.stringify([]))
-            cart = JSON.parse(localStorage.getItem('cart'))
+            localStorage.setItem('cart', JSON.stringify([{...currentProduct, count: 1}]))
+            return
         }
-        console.log(cart)
-        cart.push(JSON.parse(localStorage.getItem('current-product')))
+        cart.map(cartItem => {
+            let {count, ...tempCartItem} = cartItem
+            if(JSON.stringify(currentProduct) == JSON.stringify(tempCartItem)){
+                cartItem.count += 1
+                productIsDublicator = true
+            }
+        })
+        if(!productIsDublicator){
+            cart.push({...currentProduct, count: 1}) 
+        }
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 
@@ -71,7 +80,7 @@ const ProductPage = (props) => {
                     <div id="product-name">{props.product.name}</div>
                     
                     {props.product.attributes.length > 0 ? props.product.attributes.map((attr, attrIndex) => {
-                        return (<ProductAttribute attribute={attr} inCart={true} key={attr.id}></ProductAttribute>)
+                        return (<ProductAttribute attribute={attr} type="product-page" key={attr.id}></ProductAttribute>)
                     }) : ''}
 
                     <div id="product-price">

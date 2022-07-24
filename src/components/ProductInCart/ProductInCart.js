@@ -20,7 +20,7 @@ const ProductInCart = (props) => {
             <div className="cartpage-product-price">{price}</div>
             <div className="cartpage-product-attributes">
                 {product.attributes.length > 0 ? product.attributes.map((attr, attrIndex) => {
-                        return (<ProductAttribute attribute={attr} key={attr.id}></ProductAttribute>)
+                        return (<ProductAttribute attribute={attr} attrValues={props.attributes} type="cart" index={props.index} key={attr.id}></ProductAttribute>)
                     }) : ''}
             </div>
             <div className="cartpage-product-images">

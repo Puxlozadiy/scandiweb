@@ -15,7 +15,13 @@ const CartPage = (props) => {
             <main id="cartpage">
                 <div id="cartpage-title">CART</div>
                 <div id="cartpage-products">
-                    <ProductInCart product={product1}></ProductInCart>
+                    {cart.map((cartItem, index) => {
+                        return products.map(product => {
+                            if(cartItem.id === product.id){
+                                return <ProductInCart product={product} attributes={cartItem.attributes} index={index} key={index}></ProductInCart>
+                            }
+                        })
+                    })}
                 </div>
             </main>
         )
