@@ -1,0 +1,86 @@
+body
+{
+    --c-primary: #5ECE7B;
+}
+
+header
+{
+    width: 1440px;
+    height: 80px;
+    position: relative;
+}
+
+#nav-bar
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: absolute;
+    height: 56px;
+    left: 101px;
+    bottom: 0;
+}
+
+
+.nav-item
+{
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    display: block;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--c-primary);
+    padding: 4px 16px;
+    cursor: pointer;
+    height: 56px;
+    box-sizing: border-box;
+}
+
+#nav-bar a
+{
+    text-decoration: none;
+}
+
+#nav-bar a::after
+{
+    content: " ";
+    background-color: #5ECE7B;
+    width: 0%;
+    height: 2px;
+    margin-left: 50%;
+    display: block;
+    transition: all 1s;
+}
+
+#nav-bar a:hover:after
+{
+    width: 100%;
+    margin-left: 0%;
+}
+
+#logo{
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);;
+}
+
+#actions
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 22px;
+    position: absolute;
+    height: 40px;
+    right: 101px;
+    top: 23px;
+}
