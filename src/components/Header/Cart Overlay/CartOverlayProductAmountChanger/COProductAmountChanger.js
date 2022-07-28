@@ -2,15 +2,19 @@ import React from "react";
 import plus from '../../../../assets/plus-s.svg'
 import minus from '../../../../assets/minus-s.svg'
 import './COProductAmountChanger.css'
+import { useSelector, useDispatch } from 'react-redux'
 
 const COProductAmountChanger = (props) => {
+    const dispatch = useDispatch()
 
     const increaseAmount = () => {
         props.onAmountIncrease()
+        dispatch({type: 'increase_cart_amount'})
     }
 
     const reduceAmount = () => {
         props.onAmountReduce()
+        dispatch({type: 'decrease_cart_amount'})
     }
 
     return (

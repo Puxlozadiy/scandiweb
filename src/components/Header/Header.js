@@ -30,7 +30,7 @@ const Header = (props) => {
             </Link>
             <div id="actions">
                 <CurrencySwitcher/>
-                <CartOverlay products={props.products}/>
+                <CartOverlay products={props.products} amount={props.amount}/>
             </div>
         </header>
     )

@@ -6,9 +6,12 @@ import ProductList from './pages/ProductList/ProductList';
 import ProductPage from './pages/ProductPage/ProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import {GET_CATEGORIES, GET_PRODUCTS} from './requests.js'
+import { useSelector } from 'react-redux'
 
 const App = () => {
-  
+
+  const cartAmount = useSelector(state => state.amount)
+  console.log(cartAmount)
   const DisplayProducts = () => {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
 
@@ -54,7 +57,7 @@ const App = () => {
   if(products !== undefined){
     return (
       <Fragment>
-        <Header categories={categories} products={products} ></Header>
+        <Header categories={categories} products={products} amount={cartAmount}></Header>
         <Route path="/" exact>
           <Redirect to={categories !== undefined ? categories.categories[0].name : ""}/>
         </Route>

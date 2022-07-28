@@ -2,10 +2,13 @@ import React, {useEffect} from "react";
 import './Product.css'
 import cartLogo from '../../assets/cart-white.svg'
 import { Redirect, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
 
 const Product = (props) => {
     const history = useHistory();
+    const dispatch = useDispatch()
     const addToCard = () => {
+        dispatch({type: 'increase_cart_amount'})
         let cart = JSON.parse(localStorage.getItem('cart'))
         let productIsDublicator = false
         let newProduct = {

@@ -4,15 +4,19 @@ import './CartOverlay.css'
 import cartLogo from '../../../assets/cart.svg'
 import ProductInCartOverlay from './ProductInCartOverlay/ProductInCartOverlay'
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import store from '../../../store/store'
 
 const CartOverlay = (props) => {
+    const cartAmount = useSelector(state => state.amount)
+    //let cartAmount = props.amount
+    console.log(cartAmount)
     let products = props.products.category.products
     const [isCartOverlayDisplayed, setIsCartOverlayDisplayed] = useState(false)
     let cart = JSON.parse(localStorage.getItem('cart'))
     const currentCurrency = localStorage.getItem('current-currency')
     const dropdown = useRef()
     const [rendered, rerenderComponent] = useState(0);
-    let cartAmount = cart?.length
 
 
     const toggleCartOverlay = () => {
