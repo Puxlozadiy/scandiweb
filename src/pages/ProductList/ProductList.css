@@ -1,32 +1,31 @@
-main{
+#product-list{
     width: 1440px;
     height: auto;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
 }
 
 
 #category
 {
-    position: absolute;
-    height: 68px;
+    width: 100%;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
     font-size: 42px;
     line-height: 160%;
     /* --c-text */
-
     color: #1D1F22;
-    left: 101px;
-    top: 80px;
 }
 
 #products
 {
-    position: absolute;
-    top: 251px;
-    left: 50%;
-    transform: translate(-50%, -0%);
+    margin-top: 100px;
     display: grid;
     justify-content: center;
     align-items: center;

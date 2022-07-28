@@ -1,9 +1,15 @@
 import React, {useEffect} from "react";
-
+import './ProductAttribute.css'
 const ProductAttribute = (props) => {
     let attribute = props.attribute
     let attrValues = props.attrValues
-    console.log(attribute)
+
+    let styleClasses = {
+        container: props.type === 'cart-overlay' ? 'overlay-product-attr' : 'product-attr',
+        title: props.type === 'cart-overlay' ? 'overlay-product-attr-title' : 'product-attr-title',
+        options: props.type === 'cart-overlay' ? attribute.name === 'Color' ? 'overlay-product-color-select' : 'overlay-product-attr-select' : attribute.name === 'Color' ? 'product-color-select' : 'product-attr-select',
+        optionId: props.type === 'cart' || props.type === 'cart-overlay'? `${props.index}-${attribute.name.toLowerCase()}-` : `${attribute.name.toLowerCase()}-`
+    }
 
     const attributeSelectHandler = (event) => {
         if(props.type === 'product-page'){
@@ -25,22 +31,22 @@ const ProductAttribute = (props) => {
     }
 
     useEffect(() => {
-        if(props.type === 'cart'){
-            console.log(attrValues)
+        if(props.type === 'cart' || props.type === 'cart-overlay'){
             attrValues.map(attr => {
                 if (attr.name === attribute.name.toLowerCase()){
-                    document.getElementById(`${props.index}-${attr.name}-${attr.value}`).classList.add(attr.name === 'color' ? 'selected-color' : 'selected-attr')
+                    let target = document.getElementById(`${props.index}-${attr.name}-${attr.value}`)
+                    target.classList.add(attr.name === 'color' ? 'selected-color' : 'selected-attr')
                 }
             })
         }
     }, [])
 
     return (
-        <div className="product-attr">
-            <div className={`product-attr-title`}>{attribute.name.toUpperCase()}:</div>
-            <div className={attribute.name === 'Color' ? 'product-color-select' : 'product-attr-select'}>
+        <div className={styleClasses.container}>
+            <div className={styleClasses.title}>{props.type === 'cart-overlay' ? attribute.name : attribute.name.toUpperCase()}:</div>
+            <div className={styleClasses.options}>
                 {attribute.items.map((item, itemIndex) => 
-                    <div id={props.type === 'cart' ? `${props.index}-${attribute.name.toLowerCase()}-${itemIndex}` : `${attribute.name.toLowerCase()}-${itemIndex}`} key={item.id} style={attribute.name === 'Color' ? {backgroundColor: `${item.value}`} : {}} onClick={attributeSelectHandler}>
+                    <div id={`${styleClasses.optionId}${itemIndex}`} key={item.id} style={attribute.name === 'Color' ? {backgroundColor: `${item.value}`} : {}} onClick={attributeSelectHandler}>
                         {attribute.name !== 'Color' && item.displayValue}
                     </div>)
                 }

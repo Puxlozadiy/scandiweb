@@ -1,6 +1,7 @@
 body
 {
     --c-primary: #5ECE7B;
+    --c-text: #1D1F22;
 }
 
 header
@@ -8,6 +9,7 @@ header
     width: 1440px;
     height: 80px;
     position: relative;
+    z-index: 3;
 }
 
 #nav-bar
@@ -33,11 +35,16 @@ header
     display: block;
     align-items: center;
     text-transform: uppercase;
-    color: var(--c-primary);
+    color: var(--c-text);
     padding: 4px 16px;
     cursor: pointer;
-    height: 56px;
+    height: 54px;
     box-sizing: border-box;
+}
+
+.nav-item-selected
+{
+    color: var(--c-primary);
 }
 
 #nav-bar a
@@ -54,6 +61,7 @@ header
     margin-left: 50%;
     display: block;
     transition: all 1s;
+    z-index: 4;
 }
 
 #nav-bar a:hover:after

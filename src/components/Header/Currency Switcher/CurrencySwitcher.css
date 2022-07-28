@@ -45,8 +45,8 @@
     cursor: pointer;
     z-index: 3;
     position: absolute;
-    top: 36.5px;
-    left: -5px;
+    right: 78px;
+    top: -15px;
 }
 
 .currency-option

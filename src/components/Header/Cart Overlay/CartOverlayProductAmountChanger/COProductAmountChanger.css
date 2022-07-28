@@ -1,0 +1,34 @@
+.cart-overlay-product-amount
+{
+    position: absolute;
+    top: 0;
+    right: 128px;
+    width: 24px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-overlay-product-amount img
+{
+    pointer-events: none;
+}
+
+.cart-overlay-product-amount-button
+{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.cart-overlay-product-amount-value
+{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    text-align: center;
+    color: #1D1F22;
+}

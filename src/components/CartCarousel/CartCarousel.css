@@ -1,0 +1,48 @@
+.image-carousel
+{
+    width: 200px;
+    height: 288px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+    top: 24px;
+    right: 0;
+}
+
+.image-carousel img
+{
+    height: 100%;
+}
+
+.image-selectors
+{
+    width: 56px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.image-selectors div
+{
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.73);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.image-selectors div img
+{
+    width: 8px;
+}
+
+.back
+{
+    transform: rotate(-180deg);
+}

@@ -1,0 +1,38 @@
+.cartpage-product-amount
+{
+    position: absolute;
+    width: 45px;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    right: 224px;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+.cartpage-product-amount *
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 160%;
+}
+
+.cartpage-product-amount-button
+{
+    width: 45px;
+    height: 45px;
+    border: 1px black solid;
+    cursor: pointer;
+}
+
+.cartpage-product-amount-button img
+{
+    width: 15px;
+}

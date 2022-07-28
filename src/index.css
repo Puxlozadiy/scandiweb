@@ -8,6 +8,15 @@ body {
   display: flex;
   justify-content: center;
   padding-left: calc(100vw - 100%);
+  overflow-y: overlay;
+}
+
+#root
+{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 *{
@@ -28,4 +37,42 @@ a
 main
 {
   padding: 80px 100px;
+  z-index: 3;
+  background-color: #FFFFFF;
+}
+
+
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.blackout
+{
+  background: rgba(57, 55, 72, 0.22);
+}
+
+#blackout-background
+{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+
+}
+
+#blackout-overlay
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  top: 0;
+  left: 0;
 }

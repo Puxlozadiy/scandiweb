@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import arrow from '../../assets/arrow.svg'
-import dollar from '../../assets/currencies-logos/dollar.svg'
+import React, { useState, useRef, useEffect, Fragment } from "react";
+import arrow from '../../../assets/arrow.svg'
 import { useQuery, gql } from '@apollo/client';
 import './CurrencySwitcher.css'
-import { resolveReadonlyArrayThunk } from "graphql";
+import ReactDOM from "react-dom";
 
 const CurrencySwitcher = () => {
     const GET_CURRENCIES = gql`
@@ -27,11 +26,12 @@ const CurrencySwitcher = () => {
     const closeSwitcher = (e) => {
         if(isSwitcherDisplayed === true){
             let clickMissedSwitcher = true
-            e.path.map(value => {
-                if(value.id === dropdown.current.id){
+            e.composedPath().map(value => {
+                if(value.id === dropdown.current.id  || value.id === 'currency'){
                     clickMissedSwitcher = false
                 }
             })
+            console.log(clickMissedSwitcher)
             if(clickMissedSwitcher === true) setIsSwitcherDisplayed(false)
         }
     }
@@ -59,21 +59,30 @@ const CurrencySwitcher = () => {
 
     
 
-    const showCurrencySwitcher = () => {
+    const toggleCurrencySwitcher = () => {
         setIsSwitcherDisplayed(!isSwitcherDisplayed)
     }
 
-    const onblur = () => {
-        console.log('blured')
+    if(!isSwitcherDisplayed){
+        return (
+            <div id="currency" ref={dropdown}>
+                <div id="currency-actual" onClick={toggleCurrencySwitcher}>
+                    <div id="currency-symbol">{localStorage.getItem('current-currency').split(' ')[0]}</div>
+                    <div id="arrow"><img src={arrow} alt=""></img></div>
+                </div>
+            </div>
+        )
     }
 
+    
+
     return (    
-        <div id="currency" onClick={showCurrencySwitcher} onBlur={onblur}>
-            <div id="currency-actual">
+        <div id="currency" onClick={toggleCurrencySwitcher}>
+            <div id="currency-actual" onClick={toggleCurrencySwitcher}>
                 <div id="currency-symbol">{localStorage.getItem('current-currency')[0]}</div>
                 <div id="arrow"><img src={arrow} alt=""></img></div>
             </div>
-            <div id="currency-select-dropdown" style={{display: `${isSwitcherDisplayed ? 'block' : 'none'}`}} ref={dropdown}><DisplayCurrencies/></div>
+            {ReactDOM.createPortal(<div id="currency-select-dropdown" ref={dropdown}><DisplayCurrencies/></div>, document.getElementsByTagName('main')[0])}
         </div>
     )
 }

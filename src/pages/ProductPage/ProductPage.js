@@ -64,33 +64,38 @@ const ProductPage = (props) => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 
+    const htmlString = props.product.description
+
     if(props.product !== undefined){
         return(
-            <main>
-                <div id="images">
-                    <div id="images-preview">
-                        {props.product.gallery.map((value, index) => <img src={value} key={index} meta={index} onClick={selectImage} alt=""></img>)}
+            <div id="blackout-background">
+                <main id="product-page">
+                    <div id="blackout-overlay"></div>
+                    <div id="images">
+                        <div id="images-preview">
+                            {props.product.gallery.map((value, index) => <img src={value} key={index} meta={index} onClick={selectImage} alt=""></img>)}
+                        </div>
+                        <div id="image-bigview">
+                            <img src={props.product.gallery[selectedImage]} alt=""></img>
+                        </div>
                     </div>
-                    <div id="image-bigview">
-                        <img src={props.product.gallery[selectedImage]} alt=""></img>
-                    </div>
-                </div>
-                <div id="product-properties">
-                    <div id="product-brand">{props.product.brand}</div>
-                    <div id="product-name">{props.product.name}</div>
-                    
-                    {props.product.attributes.length > 0 ? props.product.attributes.map((attr, attrIndex) => {
-                        return (<ProductAttribute attribute={attr} type="product-page" key={attr.id}></ProductAttribute>)
-                    }) : ''}
+                    <div id="product-properties">
+                        <div id="product-brand">{props.product.brand}</div>
+                        <div id="product-name">{props.product.name}</div>
+                        
+                        {props.product.attributes.length > 0 ? props.product.attributes.map((attr, attrIndex) => {
+                            return (<ProductAttribute attribute={attr} type="product-page" key={attr.id}></ProductAttribute>)
+                        }) : ''}
 
-                    <div id="product-price">
-                        <div id="product-price-title">PRICE:</div>
-                        <div id="product-price-value">{price}</div>
+                        <div id="product-price">
+                            <div id="product-price-title">PRICE:</div>
+                            <div id="product-price-value">{price}</div>
+                        </div>
+                        <div id="add-to-cart" onClick={addProductToCart}>ADD TO CART</div>
+                        <div id="product-description" dangerouslySetInnerHTML={{__html: htmlString}}></div>
                     </div>
-                    <div id="add-to-cart" onClick={addProductToCart}>ADD TO CART</div>
-                    <div id="product-description">{props.product.description.substring(3).substring(0, props.product.description.substring(3).length - 4)}</div>
-                </div>
-            </main>
+                </main>
+            </div>
         )
     }
     return <span>Loading</span>

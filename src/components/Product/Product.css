@@ -75,3 +75,29 @@
     order: 0;
     flex-grow: 0;
 }
+
+
+.product-add-to-cart
+{
+    position: absolute;
+    top: 320px;
+    right: 31px;
+    display: none;
+    background-color: var(--c-primary);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.product-add-to-cart img
+{
+    pointer-events: none;
+}
+
+.product:hover .product-add-to-cart
+{
+    display: flex;
+}
