@@ -1,6 +1,8 @@
 import {createStore} from 'redux'
 
-const counterReducer = (state = { amount: JSON.parse(localStorage.getItem('cart')).length  }, action) => {
+let cartAmount = JSON.parse(localStorage.getItem('cart')).length
+
+const counterReducer = (state = { amount: cartAmount !== null ? cartAmount : 0  }, action) => {
     if(action.type === 'increase_cart_amount'){
         return {
             amount: state.amount += 1
